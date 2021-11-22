@@ -2,10 +2,10 @@ import io
 import os
 import csv
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/Users/nicholaschevrier/Downloads/vision-238320-c46644db27b4.json"
-# Imports the Google Cloud client library
+
 from google.cloud import vision
 from google.cloud import vision_v1
-# Instantiates a client
+
 GOOGLE_APPLICATION_CREDENTIALS="/Users/nicholaschevrier/Downloads/vision-238320-c46644db27b4.json"
 
 client = vision.ImageAnnotatorClient()
@@ -23,14 +23,7 @@ def detect_text(path):
         except Exception as e:
             text = ""
         return text
-        # return texts[0].description
-    # for text in texts:
-    #     print('\n"{}"'.format(text.description))
 
-   # for text in texts:
-     #  print('\n"{}"'.format(text.description))
-
-# open csv file
 
 with open("imagetextuser.csv", "w") as file:
     writer = csv.writer(file, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -39,5 +32,5 @@ with open("imagetextuser.csv", "w") as file:
 
         image_text = detect_text(f"images/{image}")
         writer.writerow([image, image_text])
-        # write to csv file
+
 
